@@ -52,11 +52,15 @@
     },
     computed: {
       submitEnabled: function() {
-        return this.newUser.username.length > 0
+        var emailCheck=/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+
+        let enable = this.newUser.username.length > 0
           && this.newUser.first.length > 0
           && this.newUser.last.length > 0
           && this.newUser.email.length > 0
           && this.newUser.password.length > 0
+          && emailCheck.test(this.newUser.email)
+        return enable
       },
     },
     methods: {
